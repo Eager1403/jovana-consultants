@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOVANA Consultants - About Us</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f7f0 0%, #ffffff 100%);
+            color: #2c3e2f;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: linear-gradient(135deg, #1a4d2a 0%, #2d6a3b 100%);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 20px rgba(0,40,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo h1 {
+            color: #fff9e6;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #e0e7e0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background: #f7d44a;
+            color: #1a4d2a;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(26, 77, 42, 0.9), rgba(10, 50, 20, 0.9)), 
+                        url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/c3/39/3d/caption.jpg?h=-1&s=1&w=1200');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 5rem 1rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            animation: slideInRight 1s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 5%;
+        }
+
+        /* Mission & Vision Cards */
+        .mv-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .mv-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,40,0,0.1);
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mv-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(247,212,74,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .mv-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(247,212,74,0.2);
+        }
+
+        .mv-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mv-card h3 {
+            color: #1a4d2a;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .mv-card p {
+            color: #4a6b4a;
+            font-size: 1.1rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #1a4d2a, #f7d44a, #1a4d2a);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 2rem 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .timeline-content {
+            position: relative;
+            width: 45%;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,40,0,0.1);
+            transition: all 0.3s;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: 55%;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 55%;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            border-left: 4px solid #f7d44a;
+        }
+
+        .timeline-year {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: #f7d44a;
+            color: #1a4d2a;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .timeline-content h3 {
+            color: #1a4d2a;
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,40,0,0.1);
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .team-member:hover {
+            transform: translateY(-15px) rotateY(5deg);
+            box-shadow: 0 20px 40px rgba(247,212,74,0.3);
+        }
+
+        .member-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #1a4d2a, #2d6a3b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-image::after {
+            content: '👤';
+            font-size: 5rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .member-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .member-info h3 {
+            color: #1a4d2a;
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .member-title {
+            color: #f7d44a;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .member-bio {
+            color: #4a6b4a;
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+        }
+
+        .social-links span {
+            display: inline-block;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .social-links span:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        /* Values Section */
+        .values-section {
+            background: linear-gradient(135deg, #1a4d2a 0%, #2d6a3b 100%);
+            padding: 4rem;
+            border-radius: 30px;
+            margin: 4rem 0;
+            color: white;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s;
+        }
+
+        .value-item:hover {
+            background: rgba(247,212,74,0.2);
+            transform: scale(1.1);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-item h4 {
+            color: #f7d44a;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #1a4d2a 0%, #0a2a15 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+            }
+            
+            .page-header h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <h1>JOVANA CONSULTANTS</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="page-header">
+        <h2>About Our Company</h2>
+        <p>Building success stories since 2016</p>
+    </section>
+
+    <main class="container">
+        <!-- Mission & Vision -->
+        <div class="mv-container">
+            <div class="mv-card">
+                <div class="mv-icon">🎯</div>
+                <h3>Our Mission</h3>
+                <p>To empower businesses in Tanzania with innovative strategies and practical solutions that drive sustainable growth and excellence.</p>
+            </div>
+            <div class="mv-card">
+                <div class="mv-icon">👁️</div>
+                <h3>Our Vision</h3>
+                <p>To be the most trusted business management consultancy in East Africa, known for transforming challenges into opportunities.</p>
+            </div>
+        </div>
+
+        <!-- Timeline Section -->
+        <h2 class="section-title" style="text-align: center; color: #1a4d2a; font-size: 2.5rem; margin: 4rem 0 2rem;">Our Journey</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-year">2016</span>
+                    <h3>Company Founded</h3>
+                    <p>JOVANA Consultants was established in Dodoma with a vision to provide quality business consulting services.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-year">2018</span>
+                    <h3>First Major Partnership</h3>
+                    <p>Partnered with local government agencies to support SME development programs across the region.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-year">2020</span>
+                    <h3>Expanded Services</h3>
+                    <p>Added digital transformation and remote consulting services to help businesses adapt to new challenges.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-year">2023</span>
+                    <h3>100+ Clients Served</h3>
+                    <p>Reached milestone of serving over 100 businesses across various sectors in Tanzania.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-year">2026</span>
+                    <h3>Today</h3>
+                    <p>Continuing to grow and innovate, helping businesses navigate the modern business landscape.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Values Section -->
+        <div class="values-section">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-item">
+                    <div class="value-icon">🤝</div>
+                    <h4>Integrity</h4>
+                    <p>Honesty and transparency in all we do</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">💡</div>
+                    <h4>Innovation</h4>
+                    <p>Creative solutions for modern challenges</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">⭐</div>
+                    <h4>Excellence</h4>
+                    <p>Commitment to the highest standards</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">🌍</div>
+                    <h4>Community</h4>
+                    <p>Supporting local business growth</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Section -->
+        <h2 class="section-title" style="text-align: center; color: #1a4d2a; font-size: 2.5rem; margin: 4rem 0 2rem;">Meet Our Team</h2>
+        
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-image"></div>
+                <div class="member-info">
+                    <h3>John Jovana</h3>
+                    <p class="member-title">Founder & Lead Consultant</p>
+                    <p class="member-bio">8+ years experience in business strategy and organizational development.</p>
+                    <div class="social-links">
+                        <span>🔗</span>
+                        <span>📧</span>
+                        <span>💼</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-member">
+                <div class="member-image"></div>
+                <div class="member-info">
+                    <h3>Sarah Mtemi</h3>
+                    <p class="member-title">Senior Business Advisor</p>
+                    <p class="member-bio">Expert in financial planning and SME development across East Africa.</p>
+                    <div class="social-links">
+                        <span>🔗</span>
+                        <span>📧</span>
+                        <span>💼</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-member">
+                <div class="member-image"></div>
+                <div class="member-info">
+                    <h3>David Kisoma</h3>
+                    <p class="member-title">Project Management Lead</p>
+                    <p class="member-bio">PMP certified with track record of successful project deliveries.</p>
+                    <div class="social-links">
+                        <span>🔗</span>
+                        <span>📧</span>
+                        <span>💼</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 JOVANA CONSULTANTS COMPANY. All rights reserved. | Dodoma, Tanzania</p>
+    </footer>
+
+    <script>
+        // Animate timeline items on scroll
+        const timelineItems = document.querySelectorAll('.timeline-content');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        timelineItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(-50px)';
+            item.style.transition = 'all 0.6s ease-out';
+            observer.observe(item);
+        });
+
+        // Team member hover effect
+        document.querySelectorAll('.team-member').forEach(member => {
+            member.addEventListener('mouseenter', function() {
+                this.querySelector('.member-image').style.transform = 'scale(1.1)';
+            });
+            
+            member.addEventListener('mouseleave', function() {
+                this.querySelector('.member-image').style.transform = 'scale(1)';
+            });
+        });
+
+        // Counter for years of experience
+        const yearElement = document.createElement('div');
+        yearElement.className = 'stat-number';
+        yearElement.setAttribute('data-target', '10');
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
